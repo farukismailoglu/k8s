@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-auth-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-auth-server
+  template:
+    metadata:
+      labels:
+        app: grpc-auth-server
+    spec:
+      containers:
+        - name: grpc-auth-server
+          image: farukismailoglu/grpc-auth-server
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 50051
+              name: grpc
