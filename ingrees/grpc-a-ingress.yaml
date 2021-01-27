@@ -1,0 +1,16 @@
+apiVersion: extensions/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+  name: grpc-auth-ingress
+spec:
+  rules:
+    - host: auth
+      http:
+        paths:
+          - backend:
+              serviceName: auth
+              servicePort: grpc

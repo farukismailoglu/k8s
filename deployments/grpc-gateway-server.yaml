@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-gateway-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: grpc-gateway-server
+  template:
+    metadata:
+      labels:
+        app: grpc-gateway-server
+    spec:
+      containers:
+        - name: grpc-gateway-server
+          image: faruk5252/grpc-gateway-server:0.6
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8081
+              name: grpc

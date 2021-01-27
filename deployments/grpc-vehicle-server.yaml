@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-vehicle-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: grpc-vehicle-server
+  template:
+    metadata:
+      labels:
+        app: grpc-vehicle-server
+    spec:
+      containers:
+        - name: grpc-vehicle-server
+          image: faruk5252/grpc-vehicle-server:0.5
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 50054
+              name: grpc
